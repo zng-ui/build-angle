@@ -100,30 +100,11 @@ call "%VS%\Common7\Tools\VsDevCmd.bat" -arch=%ARCH% -startdir=none -no_logo || e
 set PATH="%WindowsSdkDir%\Debuggers\x64";%PATH%
 
 mkdir angle-%ARCH%         1>nul
-mkdir angle-%ARCH%\bin     1>nul
-mkdir angle-%ARCH%\lib     1>nul
-mkdir angle-%ARCH%\include 1>nul
 
 echo %ANGLE_COMMIT% > angle-%ARCH%\commit.txt
 
-copy /y angle\out\%ARCH%\d3dcompiler_47.dll          angle-%ARCH%\bin                         1>nul 2>nul
-copy /y angle\out\%ARCH%\libEGL.dll                  angle-%ARCH%\bin                         1>nul 2>nul
-copy /y angle\out\%ARCH%\libGLESv1_CM.dll            angle-%ARCH%\bin                         1>nul 2>nul
-copy /y angle\out\%ARCH%\libGLESv2.dll               angle-%ARCH%\bin                         1>nul 2>nul
-
-pdbcopy.exe angle\out\%ARCH%\libEGL.dll.pdb          angle-%ARCH%\bin\libEGL.dll.pdb       -p 1>nul 2>nul
-pdbcopy.exe angle\out\%ARCH%\libGLESv1_CM.dll.pdb    angle-%ARCH%\bin\libGLESv1_CM.dll.pdb -p 1>nul 2>nul
-pdbcopy.exe angle\out\%ARCH%\libGLESv2.dll.pdb       angle-%ARCH%\bin\libGLESv2.dll.pdb    -p 1>nul 2>nul
-
-copy /y angle\out\%ARCH%\libEGL.dll.lib              angle-%ARCH%\lib                         1>nul 2>nul
-copy /y angle\out\%ARCH%\libGLESv1_CM.dll.lib        angle-%ARCH%\lib                         1>nul 2>nul
-copy /y angle\out\%ARCH%\libGLESv2.dll.lib           angle-%ARCH%\lib                         1>nul 2>nul
-
-xcopy /D /S /I /Q /Y angle\include\KHR               angle-%ARCH%\include\KHR                 1>nul 2>nul
-xcopy /D /S /I /Q /Y angle\include\EGL               angle-%ARCH%\include\EGL                 1>nul 2>nul
-xcopy /D /S /I /Q /Y angle\include\GLES              angle-%ARCH%\include\GLES                1>nul 2>nul
-xcopy /D /S /I /Q /Y angle\include\GLES2             angle-%ARCH%\include\GLES2               1>nul 2>nul
-xcopy /D /S /I /Q /Y angle\include\GLES3             angle-%ARCH%\include\GLES3               1>nul 2>nul
+copy /y angle\out\%ARCH%\libEGL.dll                  angle-%ARCH%                         1>nul 2>nul
+copy /y angle\out\%ARCH%\libGLESv2.dll               angle-%ARCH%                         1>nul 2>nul
 
 del /Q /S angle-%ARCH%\include\*.clang-format angle-%ARCH%\include\*.md 1>nul 2>nul
 
